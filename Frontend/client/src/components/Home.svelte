@@ -1,9 +1,11 @@
 <script>
-    import img from '../assets/crochet.jpg' 
+  import img from "../assets/desarrolladora.png";
 
-    let data = [];
+  let data = [];
+  let frameworks = [];
+  let hobbies = [];
 
-    async function fetchData() {
+  async function fetchData() {
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BASE_API_URL}/api/profile`,
@@ -14,7 +16,12 @@
 
       if (response.ok) {
         data = await response.json();
+        data = data[0];
         console.log(data);
+        frameworks = data.frameworks;
+        console.log(frameworks);
+        hobbies = data.hobbies;
+        console.log(hobbies);
       } else {
         console.error("Error al cargar datos desde la API");
       }
@@ -24,55 +31,71 @@
   }
 
   fetchData();
-
 </script>
 
 <body>
-    <div class="contianer">
-        <h2 class="m-4">Perfil</h2>
-        <div class="row m-4">
-            <div class="col m-1 border border-danger rounded idwm-center idwm" style="--bs-bg-opacity: .5; background-color: white">
-                <img src={img} alt="image-profile" class="w-100"/>
-            </div>
-            <div class="col m-1 bg-danger border border-danger rounded idwm-center idwm" style="--bs-bg-opacity: .5;">
-                <h3>{data.name} {data.lastname}</h3>
-            </div>
-            <div class="col m-1 border border-danger rounded idwm-center idwm" style="--bs-bg-opacity: .5; background-color: white">
-                <h6 style="text-align: center;">{data.summary}</h6>
-            </div>
+  <div class="contianer">
+    <!-- Perfil -->
+    <h3 class="m-4">Perfil</h3>
+    <div class="row m-4">
+      <div class="card m-1 bg-danger border border-danger rounded idwm" style="--bs-bg-opacity: .5; text-align: center">
+        <div>
+          <img src={img} class="card-img-top" alt="image-profile" style="width: 100px;"/>
         </div>
-        <h2 class="m-4">Datos personales</h2>
-        <div class="row m-4">
-            <div class="col m-1 bg-info border border-info rounded idwm" style="--bs-bg-opacity: .5;">
-                <p class="pt-3">Edad:</p>
-                <p>22 años</p>
-            </div>
-            <div class="col m-1 bg-warning border border-warning rounded idwm" style="--bs-bg-opacity: .5;">
-                <p class="pt-3">Ciudad de origen:</p>
-                <p>{data.city}, {data.country}</p>
-            </div>
-            <div class="col m-1 bg-success border border-success rounded idwm" style="--bs-bg-opacity: .5;">
-                <p class="pt-3">Correo electrónico:</p>
-                <p>{data.email}</p>
-            </div>
+        <div class="card-body">
+          <h4 class="card-title">{data.name} {data.lastname}</h4>
+          <h6 class="card-text">{data.summary}</h6>
         </div>
-        <h2 class="m-4">Intereses</h2>
-        <div class="row m-4">
-            <div class="col-6 m-1 bg-secondary border border-secondary rounded idwm" style="--bs-bg-opacity: .5;">
-                <h6 class="pt-2">1. Tejer a crochet</h6>
-            </div>
-        </div>
-        <h2 class="m-4">Frameworks</h2>
-        <div class="row m-4 w-50">
-            {#each data.frameworks as framework (framework.name)}
-      <li>
-        Nombre: {framework.name}, Nivel: {framework.level}, Año: {framework.year}
-      </li>
-    {/each}
-        </div>
-        <h2 class="m-4">Redes sociales</h2>
-        <div class="row m-4">
-            <h6>1. Github <a href="https://github.com/Valee9" target="_blank">ir a ver</a></h6>
-        </div>
+      </div>
     </div>
+    <!-- Datos personales -->
+    <h3 class="m-4">Datos personales</h3>
+    <div class="row m-4" style="text-align: center">
+      <div
+        class="col m-1 p-2 bg-warning border border-warning rounded idwm"
+        style="--bs-bg-opacity: .5"
+      >
+        <h5>Ciudad: {data.city}</h5>
+      </div>
+      <div
+        class="col m-1 p-2 bg-warning border border-warning rounded idwm"
+        style="--bs-bg-opacity: .5"
+      >
+        <h5>País: {data.country}</h5>
+      </div>
+      <div
+        class="col m-1 p-2 bg-warning border border-warning rounded idwm"
+        style="--bs-bg-opacity: .5"
+      >
+        <h5>Correo: {data.email}</h5>
+      </div>
+    </div>
+    <!-- Hobbies -->
+    <h3 class="m-4">Hobbies</h3>
+    <div class="row m-4">
+      {#each hobbies as hobby (hobby._id)}
+        <div
+          class="col m-1 p-2 bg-success border border-success rounded idwm"
+          style="--bs-bg-opacity: .5; text-align: center"
+        >
+          <h5>
+            {hobby.name}: {hobby.description}
+          </h5>
+        </div>
+      {/each}
+    </div>
+    <!-- Frameworks -->
+    <h3 class="m-4">Frameworks</h3>
+    <div class="row m-4">
+      {#each frameworks as framework (framework._id)}
+        <div
+          class="col m-1 p-2 bg-info border border-info rounded idwm"
+          style="--bs-bg-opacity: .5; text-align: center"
+        >
+          <h5>{framework.name}, {framework.level} </h5>
+          <h6>{framework.year}</h6>
+        </div>
+      {/each}
+    </div>
+  </div>
 </body>

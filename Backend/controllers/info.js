@@ -1,9 +1,10 @@
-import dataModel from '../models/info.js';
+import Info from '../models/info.js';
 
-export const getDataInfo = async (req, res) => {
+export const getInfo = async (req, res) => {
 
     try {
-        res.status(200).send(dataModel);
+        const info = await Info.find();
+        res.status(200).send(info);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }

@@ -1,7 +1,9 @@
 import express from 'express';
-import { getDataInfo } from '../controllers/info.js';
+import { getInfo } from '../controllers/info.js';
 
 const router = express.Router();
 
 // Get all clients
-router.get('/api/profile', getDataInfo);
+router.get('/', getInfo);
+
+export default router;

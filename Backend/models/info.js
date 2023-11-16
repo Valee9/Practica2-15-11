@@ -1,27 +1,25 @@
-export const dataModel = [
-    {
-        name: "Valentina",
-        lastname: "Hormazabal",
-        email: "valentina.hormazabal@alumnos.ucn.cl",
-        city: "Antofagasta",
-        country: "Chile",
-        summary: "Estudiante de Ingerniería Civil en computación e Informática",
-        frameworks: [
-            {
-                name: "Svelte",
-                level: "Medio",
-                year: 2023
-            }
-        ],
-        hobbies: [
-            {
-                name: "Pololear",
-                description: "Salir a pasear y a comer con mi pololo"
-            },
-            {
-                name: "Crochet",
-                description: "Tejer a crochet"
-            }
-        ]
-    }
-]
+import mongoose from "mongoose";
+
+const infoSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    lastname: { type: String, required: true },
+    email: { type: String, required: true },
+    city: { type: String, required: true },
+    country: { type: String, required: true },
+    summary: { type: String, required: true },
+    frameworks: [
+        {
+            name: { type: String, required: true },
+            level: { type: String, required: true },
+            year: { type: Number, required: true }
+        }
+    ],
+    hobbies: [
+        {
+            name: { type: String, required: true },
+            description: { type: String, required: true }
+        }
+    ]
+});
+
+export default mongoose.model("Info",infoSchema);
