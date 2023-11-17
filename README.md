@@ -9,6 +9,8 @@ La practica 2 fue desarrollada en:
 
 Asegúrate de tener instalado Node.js en tu máquina
 
+## Clonar o descargar el ZIP del repositorio
+
 ## Frontend
 
 1. **Ingresa al directorio 'Frontend/client'**
