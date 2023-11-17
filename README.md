@@ -24,8 +24,9 @@ cd client
 npm install
 ```
 
-3. **Configura las variables de entorno creando un archivo .env en el directorio client y proporciona el valor necesario que es: VITE_BASE_API_URL**
-
+3. **Configura las variables de entorno creando un archivo .env en el directorio client y proporciona el valor necesario que es la url en donde se corre el servidor: 
+   - VITE_BASE_API_URL, **
+  
 4. **Inicia la aplicación**
 
 ```bash
@@ -58,24 +59,24 @@ npm run dev
 
 ## Backend
 
-Ingresa al directorio 'Backend'
+1. **Ingresa al directorio 'Backend'**
 
 ```bash
 cd Backend
 ```
 
-Instala las dependencias
+2. **Instala las dependencias**
 
 ```bash
 npm install
 ```
 
-Configura las variables de entorno creando un archivo .env en el directorio backend y proporciona los valores necesarios que son:
+3. **Configura las variables de entorno creando un archivo .env en el directorio backend y proporciona los valores necesarios que son:**
  
 - PORT
 - MONGO_URL 
 
-Inicia la aplicación
+4. **Inicia la aplicación**
 
 ```bash
 npx nodemon
